@@ -1,0 +1,7 @@
+interface:
+  display_name: 'DOTODO'
+  short_description: 'dotodo.io – run /mcp TODO actions'
+  icon_small: './icon.svg'
+  icon_large: './icon.svg'
+  brand_color: '#3DDCFF'
+  default_prompt: 'Use the DOTODO MCP server over HTTP /mcp to list, add, complete, and delete TODO issues.'
