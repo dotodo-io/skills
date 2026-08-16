@@ -1,26 +1,43 @@
 # dotodo-io/skills
 
-Agent skill for [dotodo](https://dotodo.io) — install via [skills.sh](https://skills.sh).
+This repo is the **source of truth** for the [dotodo](https://dotodo.io) agent skill (`SKILL.md`, icon, agents).
 
-```bash
-npx skills add dotodo-io/skills --skill dotodo
-```
+Web, CLI, and [skills.sh](https://skills.sh) all pull from here. Do not keep a second copy in the product monorepo.
 
-This copies **skill files only**. It does **not** configure the MCP server. For skill + MCP URL:
+## Install
+
+Skill **and** MCP URL (no auth — sign in later in the AI client):
 
 ```bash
 npx dotodo install
 ```
 
-Then sign in with OAuth in your AI client: https://dotodo.io/setup/mcp
+Guide: https://dotodo.io/setup/mcp
+
+Skill files only (no MCP):
+
+```bash
+npx skills add dotodo-io/skills --skill dotodo
+```
+
+Catalog: https://skills.sh/dotodo-io/skills/dotodo
+
+## Downloads
+
+| Artifact | URL |
+| -------- | --- |
+| `SKILL.md` | https://raw.githubusercontent.com/dotodo-io/skills/main/skills/dotodo/SKILL.md |
+| `skill.zip` (ChatGPT upload) | https://github.com/dotodo-io/skills/releases/latest/download/skill.zip |
+
+The zip has a top-level `dotodo/` folder (`dotodo/SKILL.md`). It is a **GitHub Release asset**, not a file in git. A new release is created on every merge that changes `skills/dotodo/**` (or via Actions → Release skill.zip → Run workflow).
 
 ## Layout
 
 ```
 skills/dotodo/SKILL.md
+skills/dotodo/icon.svg
+skills/dotodo/agents/
 ```
-
-Source of truth lives in the product monorepo (`skill/dotodo`). This repo is the public skills.sh package.
 
 ## License
 
