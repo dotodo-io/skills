@@ -1,20 +1,6 @@
 # dotodo-io/skills
 
-This repo is the **source of truth** for the [dotodo](https://dotodo.io) agent skill (`SKILL.md`, icon, agents).
-
-Web, CLI, and [skills.sh](https://skills.sh) all pull from here. Do not keep a second copy in the product monorepo.
-
-## Install
-
-Skill **and** MCP URL (no auth — sign in later in the AI client):
-
-```bash
-npx dotodo install
-```
-
-Guide: https://dotodo.io/setup/mcp
-
-Skill files only (no MCP):
+Source of truth for the [dotodo](https://dotodo.io) agent skill (`SKILL.md`, icon, agents).
 
 ```bash
 npx skills add dotodo-io/skills --skill dotodo
