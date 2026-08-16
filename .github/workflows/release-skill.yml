@@ -1,0 +1,38 @@
+name: Release skill.zip
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/dotodo/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pack skill.zip
+        run: |
+          test -f skills/dotodo/SKILL.md
+          rm -f skill.zip
+          (cd skills && zip -r ../skill.zip dotodo -x '*.DS_Store' -x '*/.*')
+          unzip -l skill.zip | grep -q 'dotodo/SKILL.md'
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="skill-${GITHUB_SHA::7}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists"
+            exit 0
+          fi
+          gh release create "$TAG" skill.zip \
+            --title "$TAG" \
+            --notes "Skill package (folder dotodo/) for ChatGPT upload, CLI install, and Settings download." \
+            --latest
