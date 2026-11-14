@@ -80,7 +80,7 @@ Delete is soft. Deleted issues and notes stay in the account and can be restored
 - “Bring back / undo delete / restore …”: with a known id call `restore_issue` / `restore_note`. Otherwise `search` with `includeDeleted: true`, show the matches with `deletedAt`, and restore the one the user picks.
 - Restore only on an explicit request. Never restore as housekeeping.
 - A restored item goes back to its list, or to the inbox (notes: unassigned) when that list was deleted. It is **not** re-added to Next. Offer `add_to_next` if it was there.
-- A deleted recurring series comes back one occurrence at a time (`restore_issue` per id).
+- A deleted recurring series comes back one occurrence at a time (`restore_issue` per id). An old occurrence whose series moved on comes back as a one-off without repeat. Mention that.
 
 ## How to write issues
 
