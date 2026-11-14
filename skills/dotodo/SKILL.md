@@ -71,6 +71,17 @@ Archived lists and their issues/notes are hidden from `list_*`, search, Next, an
 - Related is M2M (`relate_issue_note`, `relatedNoteIds` / `relatedIssueIds`). Edit/update **replaces** the set when those fields are sent.
 - Related ≠ `note` (hint string on an issue) ≠ note `context` (body). Link when creating issues from a note or attaching a note as a source.
 
+## Deleted and completed items
+
+Delete is soft. Deleted issues and notes stay in the account and can be restored.
+
+- `search` without `done` returns open and completed issues. Pass `done: false` for open only.
+- Deleted issues/notes are hidden unless `search` gets `includeDeleted: true`. Those rows carry `deletedAt`. Deleted lists are never returned and cannot be restored.
+- “Bring back / undo delete / restore …”: with a known id call `restore_issue` / `restore_note`. Otherwise `search` with `includeDeleted: true`, show the matches with `deletedAt`, and restore the one the user picks.
+- Restore only on an explicit request. Never restore as housekeeping.
+- A restored item goes back to its list, or to the inbox (notes: unassigned) when that list was deleted. It is **not** re-added to Next. Offer `add_to_next` if it was there.
+- A deleted recurring series comes back one occurrence at a time (`restore_issue` per id).
+
 ## How to write issues
 
 - Appointments: short phrases (“Doctor Friday”, “Meeting 3pm”).
